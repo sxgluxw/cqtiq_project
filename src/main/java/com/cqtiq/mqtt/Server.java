@@ -45,7 +45,7 @@ import org.eclipse.paho.client.mqttv3.MqttDeliveryToken;
          // 设置超时时间
          options.setConnectionTimeout(10); 
          // 设置会话心跳时间
-         options.setKeepAliveInterval(20); 
+         options.setKeepAliveInterval(20);  
          //断线做重新连接。
 //         options.setAutomaticReconnect(true);
          try {
