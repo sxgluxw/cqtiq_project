@@ -43,7 +43,7 @@ import org.eclipse.paho.client.mqttv3.MqttDeliveryToken;
          options.setUserName(userName);
          options.setPassword(passWord.toCharArray());
          // 设置超时时间
-         options.setConnectionTimeout(10);
+         options.setConnectionTimeout(10); 
          // 设置会话心跳时间
          options.setKeepAliveInterval(20); 
          //断线做重新连接。
