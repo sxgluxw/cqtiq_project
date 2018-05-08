@@ -17,8 +17,8 @@ import org.eclipse.paho.client.mqttv3.MqttDeliveryToken;
  public class Server {
  
 //     public static final String HOST = "tcp://192.168.1.3:61613";
-     public static final String HOST = "tcp://127.0.0.1:61613";
-//     public static final String HOST = "tcp://192.168.31.174:1883";
+//     public static final String HOST = "tcp://127.0.0.1:61613";
+     public static final String HOST = "tcp://192.168.31.174:1883";
      public static final String TOPIC = "toclient/124";
      public static final String TOPIC125 = "toclient/125";
      private static final String clientid = "server";

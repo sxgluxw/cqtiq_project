@@ -6,6 +6,7 @@
 
 (function ($) {
     "use strict";
+  
     var mainApp = {
 
         initFunction: function () {
@@ -21,15 +22,14 @@
                 }
             });
 			
- 
-
+            
             /* MORRIS BAR CHART
 			-----------------------------------------*/
             Morris.Bar({
                 element: 'morris-bar-chart',
                 data: [{
                     y: '2006',
-                    a: 100,
+                    a: 90,
                     b: 90
                 }, {
                     y: '2007',
@@ -69,10 +69,10 @@
                 element: 'morris-donut-chart',
                 data: [{
                     label: "Download Sales",
-                    value: 12
+                    value: 10
                 }, {
                     label: "In-Store Sales",
-                    value: 30
+                    value: 32
                 }, {
                     label: "Mail-Order Sales",
                     value: 20
