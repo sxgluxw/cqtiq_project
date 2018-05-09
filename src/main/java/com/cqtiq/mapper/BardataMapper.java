@@ -27,4 +27,8 @@ public interface BardataMapper {
     int updateByPrimaryKeySelective(Bardata record);
 
     int updateByPrimaryKey(Bardata record);
+    
+    void deleteFristData();
+    
+    List<Bardata> selectLastBarData();
 }

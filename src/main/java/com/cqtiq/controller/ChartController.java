@@ -22,6 +22,22 @@ public class ChartController {
 		System.out.println("图表查询了");
 		List<Bardata> list = chartService.showChart();
 		System.out.println(list);
+		
+		//删除最后一条数据
+		chartService.deleteFristData();
+		
+		Bardata bardata = new Bardata();
+		bardata.setA(1+(int)(Math.random()*100));
+		bardata.setB(1+(int)(Math.random()*100));
+		
+		List<Bardata> lastData = chartService.selectLastData();
+		
+		int y = (Integer.parseInt(lastData.get(0).getY()))+1;
+		bardata.setY(""+y);
+		
+		chartService.saveChart(bardata);
+		System.out.println("成功"+bardata);
+		
 		return list ;
 	}
 }
