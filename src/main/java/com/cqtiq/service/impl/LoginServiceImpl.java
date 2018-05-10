@@ -25,7 +25,7 @@ public class LoginServiceImpl implements LoginService {
 		criteria.andUsernameEqualTo(username);
 		List<User> list = userMapper.selectByExample(example);*/
 		User user = userMapper.selectByPrimaryKey(1);
-		System.out.println("service:"+user+"password:"+password);
+//		System.out.println("service:"+user+"password:"+password);
 		if (user != null && user.getPassword().equals(password)) {
 			return user;
 		}

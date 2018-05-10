@@ -37,12 +37,14 @@ public class LoginController {
 	//用户登录功能的实现
 	private static final String TOKEN_KEY = "user";
 	@RequestMapping("/login/login")
-	public String query1(String username, String password, Model model,HttpServletRequest request,HttpServletResponse response) {
+	@ResponseBody
+	public String query1(@RequestParam String username, @RequestParam String password, Model model,HttpServletRequest request,HttpServletResponse response) {
+		System.out.println(username+"====="+password);
 		User user = loginService.queryUser(username, password);
 		System.out.println(user);
 		if (user == null) {
 			model.addAttribute("msg", "错误");
-			return "redirect:/login";
+			return "400";
 		}
 		String token = user.toString();
 		if("".equals(CookieUtils.getCookieValue(request, token))&&StringUtils.isBlank(CookieUtils.getCookieValue(request, token)))
@@ -52,7 +54,7 @@ public class LoginController {
 			CookieUtils.deleteCookie(request, response, TOKEN_KEY);
 			CookieUtils.setCookie(request, response, TOKEN_KEY, token);
 		}
-		return "redirect:/index";
+		return "200";
 	}
 	
 	//用户退出功能的实现
