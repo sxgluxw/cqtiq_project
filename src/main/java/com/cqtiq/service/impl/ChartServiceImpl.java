@@ -24,4 +24,20 @@ public class ChartServiceImpl implements ChartService {
 		return list;
 	}
 
+	@Override
+	public void deleteFristData() {
+		bardataMapper.deleteFristData();
+	}
+
+	@Override
+	public List<Bardata> selectLastData() {
+		List<Bardata> barData = bardataMapper.selectLastBarData();
+		return barData;
+	}
+
+	@Override
+	public void saveChart(Bardata bardata) {
+		bardataMapper.insert(bardata);
+	}
+
 }

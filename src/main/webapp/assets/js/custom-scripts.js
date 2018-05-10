@@ -21,13 +21,12 @@
                 }
             });
 
-            var bardata;
-            $.post("http://localhost:8080/cqtiq//chart/showChart","",function(data){
-            	bardata=data ;
-            	alert(bardata)
+            
+            $.post("http://localhost:8080/cqtiq/chart/showChart","",function(data){
+            	
             	   Morris.Bar({
                        element: 'morris-bar-chart',
-                       data: bardata,
+                       data: data,
                        xkey: 'y',
                        ykeys: ['a', 'b'],
                        labels: ['Series A', 'Series B'],
@@ -42,7 +41,7 @@
             },
             	
             	"json");
-            alert(bardata)
+           
             /* MORRIS BAR CHART
 			-----------------------------------------*/
          

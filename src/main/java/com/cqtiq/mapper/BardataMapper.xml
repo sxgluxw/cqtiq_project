@@ -88,6 +88,11 @@
     from bardata
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectLastBarData" resultMap="BaseResultMap" >
+    select  <include refid="Base_Column_List" />
+    from bardata
+    order by id desc LIMIT 1
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from bardata
     where id = #{id,jdbcType=INTEGER}
@@ -97,6 +102,9 @@
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
+  </delete>
+  <delete id="deleteFristData" >
+    delete from bardata limit 1
   </delete>
   <insert id="insert" parameterType="com.cqtiq.pojo.Bardata" >
     insert into bardata (id, y, a, b
