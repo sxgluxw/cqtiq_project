@@ -20,8 +20,6 @@ public class ShowPageController {
 	
 	@RequestMapping("/{page}")
 	public String showIndexPage1(@PathVariable String page) {
-//		String substring = request.getServletPath().substring(1);
-//		System.out.println(substring);
 		return page;
 	}
 	

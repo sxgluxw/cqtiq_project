@@ -29,11 +29,11 @@
     <body id="body">
         <div class="page-container" style="margin: 100px auto 0px;">
             <h1>注册</h1>
-            <form id="_form" action="" method="post">
+            <form id="_form" action="/register/userRegister" method="post">
                 <input type="text" name="username" id="username" class="username" placeholder="username">
                 <input type="text" name="email"  id="email" placeholder="Email账号" style="color: blue;"><span id="input1" style="color: red"></span>
                 <input type="password" name="password" id="password" class="password" placeholder="输入密码"><span id="input2" style="color: red"></span>
-                <input type="password" id="re_password"  placeholder="确认密码"><span id="input3" style="color: red"></span>
+                <input type="password" id="re_password" name="re_password"  placeholder="确认密码"><span id="input3" style="color: red"></span>
                 <div style="text-align: left; margin-left: 10px;" id="vcode">
 	                <input type="text" name="vcode"   placeholder="验证码" style="width: 110px; margin-left: -8px; margin-right: 8px;">
                 	<img src="/open/getGifCode.shtml" />
@@ -104,14 +104,14 @@
 			    	}else{
 			    		$("#input4").html("");
 			    	}
-			    	var load = layer.load();
-			    	$.post("/u/subRegister.shtml",$("#_form").serialize() ,function(result){
-			    		layer.close(load);
-			    		if(result && result.status!= 200){
-			    			return layer.msg(result.message,function(){}),!1;
+			    	$.post("http://localhost:8080/cqtiq/register/userRegister",$("#_form").serialize() ,function(result){
+			    		
+			    		if( result != "200"){
+			    			alert("用户名已被占用，请重新注册！")
+			    			return "register";
 			    		}else{
-			    			layer.msg('注册成功！' );
-			    			window.location.href= result.back_url || "/";
+			    			alert('注册成功！请登录' );
+			    			window.location.href= "login";
 			    		}
 			    	},"json");
 			        
