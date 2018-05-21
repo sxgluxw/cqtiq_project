@@ -6,8 +6,32 @@ public class User {
     private String username;
 
     private String password;
+    
+    private String re_password;
+    
+    private String vcode;
 
-    public Integer getId() {
+    private String email;
+
+    public String getRe_password() {
+		return re_password;
+	}
+
+	public void setRe_password(String re_password) {
+		this.re_password = re_password;
+	}
+
+	
+
+	public String getVcode() {
+		return vcode;
+	}
+
+	public void setVcode(String vcode) {
+		this.vcode = vcode;
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -31,8 +55,16 @@ public class User {
         this.password = password == null ? null : password.trim();
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email == null ? null : email.trim();
+    }
+
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + "]";
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email + "]";
 	}
 }

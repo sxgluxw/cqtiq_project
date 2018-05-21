@@ -171,7 +171,7 @@
         <script src="http://open.sojson.com/itboy/js/itboy/app/supersized-init.js"></script>
 		<script  src="/js/common/layer/layer.js"></script>
         <script >
-			jQuery(document).ready(function() {
+			jQuery(document).ready(function() { 
 				//回车事件绑定
 				document.onkeydown=function(event){
 					var e = event || window.event || arguments.callee.caller.arguments[0];
