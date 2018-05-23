@@ -24,5 +24,8 @@
       
     <!-- 导入数据库配置 -->  
     <import resource="spring-tx.xml"/>  
+    
+    <!-- 导入shiro配置 -->  
+    <import resource="spring-shiro.xml"/>  
       
 </beans>  

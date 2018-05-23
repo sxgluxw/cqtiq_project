@@ -23,6 +23,9 @@ public class RegisterController {
 	@ResponseBody
 	public String registerUser( User user ) {
 		System.out.println(user.getUsername());
+		if(user.getPassword() != user.getRe_password()) {
+			return "400";
+		}
 		boolean flag = registerService.getUserByName(user.getUsername());
 		if(flag) {
 			return "400";

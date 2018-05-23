@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,6 +44,12 @@ public class LoginController {
 	@ResponseBody
 	public String query1(@RequestParam String username, @RequestParam String password, Model model,HttpServletRequest request,HttpServletResponse response) {
 		System.out.println(username+"====="+password);
+		Subject subject = SecurityUtils.getSubject();
+		// 用户名和密码信息
+				AuthenticationToken authenticationToken = new UsernamePasswordToken(username, password);
+		System.out.println("user接受到了");
+		subject.login(authenticationToken);
+		
 		User user = loginService.queryUser(username, password);
 		System.out.println(user);
 		if (user == null) {
@@ -63,7 +73,8 @@ public class LoginController {
 	public boolean exitUser(HttpServletRequest request,HttpServletResponse response) {
 		String token = CookieUtils.getCookieValue(request, TOKEN_KEY);
 		CookieUtils.deleteCookie(request, response, TOKEN_KEY);
-		
+		Subject subject = SecurityUtils.getSubject();
+		subject.logout();
 		boolean flag = true;
 		return flag;
 	}
