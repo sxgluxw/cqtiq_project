@@ -30,7 +30,8 @@
 	    <!-- Shiro连接约束配置,即过滤链的定义 -->  
 	    <property name="filterChainDefinitions">  
 	        <value>  
-	             /login=anon
+	             /login*=anon
+	             /register*=anon
 				/zs*=authc
 				/student=roles[custom]
 				/login/login* = anon

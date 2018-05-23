@@ -115,8 +115,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								: "close2";
 						if (div1.className == "close1") {
 							/* alert("关") */
-							$.post("http://localhost:8080/cqtiq/switch/save",{"name":"close"},function(){},"json")
-						};
+							$.post("http://localhost:8080/cqtiq/switch/save",{"name":"close"},function(){
+								
+							},"json");
+						}
 						
 					}
 				}
