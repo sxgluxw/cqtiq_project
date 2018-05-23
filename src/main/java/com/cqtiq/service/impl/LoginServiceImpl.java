@@ -32,4 +32,15 @@ public class LoginServiceImpl implements LoginService {
 		return null;
 	}
 
+	@Override
+	public User findByUsername(String username) {
+		UserExample example = new UserExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andUsernameEqualTo(username);
+		List<User> list = userMapper.selectByExample(example );
+		User user = new User();
+		user = list.get(0);
+		return user;
+	}
+
 }

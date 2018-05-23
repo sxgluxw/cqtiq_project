@@ -6,4 +6,6 @@ public interface LoginService {
 
 	User queryUser(String username,String password);
 
+	User findByUsername(String username);
+
 }
