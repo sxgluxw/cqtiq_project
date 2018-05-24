@@ -31,7 +31,7 @@ public class RegisterController {
 	public String registerUser( User user ) {
 //		System.out.println(user.getUsername());
 //		System.out.println(objs[0]);
-//		System.out.println(user.getVcode());
+//		System.out.println(user.getVcode()); 
 		if(!user.getVcode().equalsIgnoreCase((String) objs[0])) {
 			return "500";
 		}
@@ -52,7 +52,8 @@ public class RegisterController {
 		public void valicode(HttpServletResponse response,HttpSession session) throws Exception{  
 		    //利用图片工具生成图片  
 		    //第一个参数是生成的验证码，第二个参数是生成的图片  
-		    //Object[] objs = ImageUtil.createImage(); 
+			//Object[] objs = ImageUtil.createImage(); 
+			objs = ImageUtil.createImage(); 
 		    //将验证码存入Session  
 		    session.setAttribute("imageCode",objs[0]);  
 		    //将图片输出给浏览器  
