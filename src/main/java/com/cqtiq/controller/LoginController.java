@@ -1,9 +1,12 @@
 package com.cqtiq.controller;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -24,6 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.cqtiq.pojo.User;
 import com.cqtiq.service.LoginService;
 import com.cqtiq.utils.CookieUtils;
+import com.cqtiq.utils.ImageUtil;
 
 @Controller
 public class LoginController {
@@ -71,11 +75,14 @@ public class LoginController {
 	@RequestMapping("/switch/exit")
 	@ResponseBody
 	public boolean exitUser(HttpServletRequest request,HttpServletResponse response) {
-		String token = CookieUtils.getCookieValue(request, TOKEN_KEY);
-		CookieUtils.deleteCookie(request, response, TOKEN_KEY);
 		Subject subject = SecurityUtils.getSubject();
 		subject.logout();
+		String token = CookieUtils.getCookieValue(request, TOKEN_KEY);
+		CookieUtils.deleteCookie(request, response, TOKEN_KEY);
 		boolean flag = true;
 		return flag;
 	}
+	
+	
+	
 }

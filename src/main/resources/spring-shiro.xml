@@ -32,6 +32,8 @@
 	        <value>  
 	             /login*=anon
 	             /register*=anon
+	             /open/valicode.do*=anon
+	             /register/userRegister*=anon
 				/zs*=authc
 				/student=roles[custom]
 				/login/login* = anon
