@@ -17,7 +17,7 @@
     <link href="assets/css/custom-styles.css" rel="stylesheet" />
     <!-- Google Fonts-->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-    <link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css"> 
+    <link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css">
 </head>
 <body>
      <div id="wrapper">
@@ -234,7 +234,7 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> 设置</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login" class="a_post"><i class="fa fa-sign-out fa-fw"></i> 退出</a>
+                        <li><a class="a_post"><i class="fa fa-sign-out fa-fw"></i> 退出</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -242,8 +242,12 @@
                 <!-- /.dropdown -->
             </ul>
         </nav>
-        <script type="text/javascript">
-        $(".a_post").on("click",function(event){
+         <script  src="js/common/jquery/jquery1.8.3.min.js"></script> 
+        
+        <script>
+        jQuery(document).ready(function() {
+        $(".a_post").on("click",function(){
+        	
             event.preventDefault();//使a自带的方法失效，即无法调整到href中的URL(http://www.baidu.com)
             $.ajax({
                    type: "POST",
@@ -261,6 +265,7 @@
                       //请求失败之后的操作
                    }
             });
+        });
         });
         </script>
          <!--/. NAV TOP  -->

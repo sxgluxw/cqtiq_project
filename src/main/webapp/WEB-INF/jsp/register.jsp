@@ -36,7 +36,7 @@
                 <input type="password" id="re_password" name="re_password"  placeholder="确认密码"><span id="input3" style="color: red"></span>
                 <div style="text-align: left; margin-left: 10px;" id="vcode">
 	                <input type="text" name="vcode"   placeholder="验证码" style="width: 110px; margin-left: -8px; margin-right: 8px;">
-                	<img src="/open/getGifCode.shtml" />
+                	<img src="http://localhost:8080/cqtiq/open/valicode.do" />
                 <span id="input4" style="color: red"></span>
                 </div>
                 <button type="button" class="register">注册</button>
@@ -57,9 +57,9 @@
 				$("#vcode").on("click",'img',function(){
 					/**动态验证码，改变地址，多次在火狐浏览器下，不会变化的BUG，故这样解决*/
 					var i = new Image();
-					i.src = '/open/getGifCode.shtml?'  + Math.random();
+					i.src = 'http://localhost:8080/cqtiq/open/valicode.do?'  + Math.random() ;
 					$(i).replaceAll(this);
-					//$(this).clone(true).attr("src",'/open/getGifCode.shtml?'  + Math.random()).replaceAll(this);
+					/* $(this).clone(true).attr("src",'/open/getGifCode.shtml?'  + Math.random()).replaceAll(this); */
 				});
 			    $('.register').click(function(){
 			    	var form = $('#_form');
@@ -105,13 +105,15 @@
 			    		$("#input4").html("");
 			    	}
 			    	$.post("http://localhost:8080/cqtiq/register/userRegister",$("#_form").serialize() ,function(result){
-			    		
-			    		if( result != "200"){
+			    		if( result == "400"){
 			    			alert("用户名已被占用，请重新注册！")
-			    			return "register";
-			    		}else{
+			    			window.location.href="register";
+			    		}else if(result == "200"){
 			    			alert('注册成功！请登录' );
 			    			window.location.href= "login";
+			    		}else if(result =="500"){
+			    			alert('验证码不正确！')
+			    			window.location.href= 'register'
 			    		}
 			    	},"json");
 			        
