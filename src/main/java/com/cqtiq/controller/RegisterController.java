@@ -30,8 +30,8 @@ public class RegisterController {
 	@ResponseBody
 	public String registerUser( User user ) {
 //		System.out.println(user.getUsername());
-		System.out.println(objs[0]);
-		System.out.println(user.getVcode());
+//		System.out.println(objs[0]);
+//		System.out.println(user.getVcode());
 		if(!user.getVcode().equalsIgnoreCase((String) objs[0])) {
 			return "500";
 		}
