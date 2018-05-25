@@ -53,6 +53,7 @@
 		<script  src="js/common/layer/layer.js"></script>
         <script >
 			jQuery(document).ready(function() {
+			
 				//验证码
 				$("#vcode").on("click",'img',function(){
 					/**动态验证码，改变地址，多次在火狐浏览器下，不会变化的BUG，故这样解决*/

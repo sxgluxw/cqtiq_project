@@ -33,6 +33,8 @@
 	             /login*=anon
 	             /register*=anon
 	             /open/valicode.do*=anon
+	             /datachart/data*=anon
+	             /datachart*=anon
 	             /register/userRegister*=anon
 				/zs*=authc
 				/student=roles[custom]

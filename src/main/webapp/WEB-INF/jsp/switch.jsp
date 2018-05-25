@@ -17,7 +17,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">  
     <meta http-equiv="description" content="This is my page"><title>cssmoban</title>
     	<link rel="stylesheet" type="text/css" href="http://sandbox.runjs.cn/uploads/rs/55/sjckzedf/lanrenzhijia.css">
-		<script type="text/javascript" src="http://sandbox.runjs.cn/uploads/rs/55/sjckzedf/jquery-1.8.0.min.js"></script>
+		<script  src="js/common/jquery/jquery1.8.3.min.js"></script>
 <style>
     #div1{
         width: 170px;
@@ -161,7 +161,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$('.theme-popover').slideUp(200);
 		})
 	
-	})
+	});
 	</script>
 	<form action="" method="post" id="userForm">
 					<table border="1">
