@@ -24,8 +24,9 @@ public class DataChartServiceImpl implements DataChartService {
 	@Override
 	public Timeperature selectByAll() {
 		TimeperatureExample example = new TimeperatureExample();
-		List<Timeperature> list = timeperatureMapper.selectByExample(example);
-		Timeperature timeperature = list.get(0);
+//		List<Timeperature> list = timeperatureMapper.selectByExample(example);
+//		Timeperature timeperature = list.get(0);
+		Timeperature timeperature = timeperatureMapper.selectLastData();
 		return timeperature;
 	}
 
