@@ -29,4 +29,6 @@ public interface TimeperatureMapper {
     int updateByPrimaryKey(Timeperature record);
     
     void deleteFristData();
+    
+    Timeperature selectLastData();
 }
