@@ -47,7 +47,7 @@
                                 var series = this.series[0],  
                                     chart = this;  
                                 //定时器  
-                                var iCount = setInterval(function(){  
+                                var iCount = setInterval(function t(){  
                                     var url = "http://localhost:8080/cqtiq/datachart/data";  
                                     $("#getTime").load(url,function(backData,textStatus,xmlHttpRequest){  
                                         var $temperature = parseFloat(backData.substr(0,4));//对传过来的数据进行类型转换  
@@ -59,10 +59,37 @@
                                         activeLastPointToolip(chart)  
                                     });  
                                 }, 1000);  
+                                	var flag = true;
                                 //关闭定时器  
                                 $("#stopit").click(function(){  
-                                     clearInterval(iCount);  
-                                });  
+                                     clearInterval(iCount);
+                                     return flag = true;
+                                }); 
+                                $("#startit").click(function(){  
+                                	//window.location.href= "chart"; 
+                                	//关闭定时器  
+                                    $("#stopit").click(function(){  
+                                         clearInterval(iCount); 
+                                         return flag = true;
+                                    });
+                                	if(flag){
+                                	var iCount = setInterval(function t(){  
+                                    var url = "http://localhost:8080/cqtiq/datachart/data";  
+                                    $("#getTime").load(url,function(backData,textStatus,xmlHttpRequest){  
+                                        var $temperature = parseFloat(backData.substr(0,4));//对传过来的数据进行类型转换  
+                                        var $time = (new Date(Date.parse((backData.substr(5,21)).replace(/-/g,"/")))).getTime();  
+                                        //每隔一秒添加进去的数  
+                                        var x = $time;  
+                                            y = $temperature;  
+                                        series.addPoint([x, y], true, true);  
+                                        activeLastPointToolip(chart)  
+                                    });  
+                                }, 1000);
+                                	return flag = false;
+                                	}
+                                	
+                                	
+                               });
                                   
                             }  
                         }  

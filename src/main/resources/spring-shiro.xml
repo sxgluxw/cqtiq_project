@@ -37,6 +37,7 @@
 	             /datachart*=anon
 	             /register/userRegister*=anon
 				/zs*=authc
+				/fasdfa*=authc
 				/student=roles[custom]
 				/login/login* = anon
 				/teacher=perms["user:create"]
