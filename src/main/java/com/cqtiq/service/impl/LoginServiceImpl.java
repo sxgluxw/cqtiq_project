@@ -20,12 +20,13 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public User queryUser(String username, String password) {
 
-	/*	UserExample example = new UserExample();
+		UserExample example = new UserExample();
 		Criteria criteria = example.createCriteria();
 		criteria.andUsernameEqualTo(username);
-		List<User> list = userMapper.selectByExample(example);*/
-		User user = userMapper.selectByPrimaryKey(1);
+		List<User> list = userMapper.selectByExample(example);
+//		User user = userMapper.selectByPrimaryKey(1);
 //		System.out.println("service:"+user+"password:"+password);
+		User user = list.get(0);
 		if (user != null && user.getPassword().equals(password)) {
 			return user;
 		}
