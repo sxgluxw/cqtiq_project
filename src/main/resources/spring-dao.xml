@@ -18,5 +18,7 @@
         <property name="basePackage" value="com.cqtiq.mapper" />  
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>  
     </bean>                         
+             
+       
                           
 </beans>  

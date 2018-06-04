@@ -35,9 +35,9 @@
 		
             <div id="page-inner"> 
                
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-md-12">
-                    <!-- Advanced Tables -->
+                    Advanced Tables
                     <div class="panel panel-default">
                         <div class="panel-heading">
                              Advanced Tables
@@ -97,7 +97,7 @@
                                             <td class="center">6</td>
                                             <td class="center">A</td>
                                         </tr>
-                                        <tr class="gradeA">
+                                        <tr class="">
                                             <td>Gecko</td>
                                             <td>Firefox 1.0</td>
                                             <td>Win 98+ / OSX.2+</td>
@@ -461,13 +461,13 @@
                             
                         </div>
                     </div>
-                    <!--End Advanced Tables -->
+                    End Advanced Tables
                 </div>
             </div>
-                <!-- /. ROW  -->
+                /. ROW 
             <div class="row">
                 <div class="col-md-6">
-                  <!--   Kitchen Sink -->
+                    Kitchen Sink
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             Kitchen Sink
@@ -507,10 +507,10 @@
                             </div>
                         </div>
                     </div>
-                     <!-- End  Kitchen Sink -->
+                     End  Kitchen Sink
                 </div>
                 <div class="col-md-6">
-                     <!--   Basic Table  -->
+                       Basic Table 
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             Basic Table
@@ -550,13 +550,13 @@
                             </div>
                         </div>
                     </div>
-                      <!-- End  Basic Table  -->
+                      End  Basic Table 
                 </div>
             </div>
-                <!-- /. ROW  -->
+                /. ROW 
             <div class="row">
                 <div class="col-md-6">
-                      <!--    Striped Rows Table  -->
+                         Striped Rows Table 
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             Striped Rows Table
@@ -596,15 +596,15 @@
                             </div>
                         </div>
                     </div>
-                    <!--  End  Striped Rows Table  -->
+                     End  Striped Rows Table 
                 </div>
                 <div class="col-md-6">
-                    <!--    Bordered Table  -->
+                       Bordered Table 
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             Bordered Table
                         </div>
-                        <!-- /.panel-heading -->
+                        /.panel-heading
                         <div class="panel-body">
                             <div class="table-responsive table-bordered">
                                 <table class="table">
@@ -640,13 +640,13 @@
                             </div>
                         </div>
                     </div>
-                     <!--  End  Bordered Table  -->
+                      End  Bordered Table 
                 </div>
             </div>
-                <!-- /. ROW  -->
+                /. ROW 
             <div class="row">
                 <div class="col-md-6">
-                     <!--    Hover Rows  -->
+                        Hover Rows 
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             Hover Rows
@@ -686,10 +686,10 @@
                             </div>
                         </div>
                     </div>
-                    <!-- End  Hover Rows  -->
+                    End  Hover Rows 
                 </div>
                 <div class="col-md-6">
-                     <!--    Context Classes  -->
+                        Context Classes 
                     <div class="panel panel-default">
                        
                         <div class="panel-heading">
@@ -737,8 +737,9 @@
                             </div>
                         </div>
                     </div>
-                    <!--  end  Context Classes  -->
-                </div>
+                     end  Context Classes 
+                </div> -->
+                <jsp:include page="page.jsp"></jsp:include>
             </div>
                 <!-- /. ROW  -->
         </div>
