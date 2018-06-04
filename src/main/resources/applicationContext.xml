@@ -27,5 +27,9 @@
     
     <!-- 导入shiro配置 -->  
     <import resource="spring-shiro.xml"/>  
+    
+    <!-- 导入redis配置 -->  
+    <import resource="spring-redis.xml"/>  
+
       
 </beans>  

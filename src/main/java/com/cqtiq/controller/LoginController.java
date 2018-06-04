@@ -6,6 +6,7 @@ import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,14 +18,17 @@ import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import com.cqtiq.pojo.User;
+import com.cqtiq.redis.JedisClient;
 import com.cqtiq.service.LoginService;
 import com.cqtiq.utils.CookieUtils;
 import com.cqtiq.utils.ImageUtil;
@@ -33,6 +37,10 @@ import com.cqtiq.utils.ImageUtil;
 public class LoginController {
 	@Autowired
 	private LoginService loginService;
+	
+	@Resource
+//	@Qualifier("jedisClient")
+	private JedisClient jedisClient;
 
 	@RequestMapping("/user/addUser")
 	@ResponseBody
@@ -55,11 +63,15 @@ public class LoginController {
 		subject.login(authenticationToken);
 		
 		User user = loginService.queryUser(username, password);
-		System.out.println(user);
+		
+		System.out.println("User输出："+user);
 		if (user == null) {
 			model.addAttribute("msg", "错误");
 			return "400";
 		}
+		jedisClient.del("1");
+		jedisClient.set("redisToken"+user.getId(), user.getUsername());
+		System.out.println("内存缓存数据库"+jedisClient.get("redisToken"+user.getId()));
 		String token = user.toString();
 		if("".equals(CookieUtils.getCookieValue(request, token))&&StringUtils.isBlank(CookieUtils.getCookieValue(request, token)))
 		{

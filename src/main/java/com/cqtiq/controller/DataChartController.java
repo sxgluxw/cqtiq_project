@@ -55,7 +55,6 @@ public class DataChartController {
 			response.getWriter().write(temperature.getTimeperature());
 			response.getWriter().write(time);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
         
@@ -68,7 +67,6 @@ public class DataChartController {
         try {
 			response.getWriter().write(result);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}*/
         
