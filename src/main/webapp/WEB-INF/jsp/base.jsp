@@ -295,7 +295,7 @@
                     </li>
 
 
-                    <li>
+                    <!-- <li>
                         <a href="#"><i class="fa fa-sitemap"></i>多级下拉菜单<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
@@ -321,9 +321,12 @@
 
                             </li>
                         </ul>
-                    </li>
+                    </li> -->
                     <li>
                         <a href="switch"><i class="fa fa-fw fa-file"></i>灯光控制</a>
+                    </li>
+                    <li>
+                        <a href="echart"><i class="fa fa-fw fa-file"></i>测量表gauge</a>
                     </li>
                 </ul>
 
