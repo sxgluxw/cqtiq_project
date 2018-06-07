@@ -30,5 +30,7 @@ public interface EchartdataMapper {
     
     Echartdata selectLastEchartData();
     
+    List<Echartdata> selectDescEchartData();
+    
     void deleteFristData();
 }
