@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.cqtiq.mapper.EchartdataMapper" >
-  <resultMap id="BaseResultMap" type="com.cqtiq.pojo.Echartdata" >
+<mapper namespace="com.cqtiq.mapper.LineSectionsMapper" >
+  <resultMap id="BaseResultMap" type="com.cqtiq.pojo.LineSections" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="tach" property="tach" jdbcType="DOUBLE" />
-    <result column="h" property="h" jdbcType="DOUBLE" />
-    <result column="gas" property="gas" jdbcType="DOUBLE" />
-    <result column="water" property="water" jdbcType="DOUBLE" />
+    <result column="time" property="time" jdbcType="VARCHAR" />
+    <result column="numdata" property="numdata" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -67,15 +65,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, tach, h, gas, water
+    id, time, numdata
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cqtiq.pojo.EchartdataExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cqtiq.pojo.LineSectionsExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from echartdata
+    from line_sections
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -83,101 +81,78 @@
       order by ${orderByClause}
     </if>
   </select>
+    <select id="selectDescLineData" resultMap="BaseResultMap" >
+    select  <include refid="Base_Column_List" />
+    from line_sections
+    order by id desc LIMIT 10
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from echartdata
+    from line_sections
     where id = #{id,jdbcType=INTEGER}
-  </select>
-  <select id="selectLastEchartData" resultMap="BaseResultMap" >
-    select  <include refid="Base_Column_List" />
-    from echartdata
-    order by id desc LIMIT 1
-  </select>
-  <select id="selectDescEchartData" resultMap="BaseResultMap" >
-    select  <include refid="Base_Column_List" />
-    from echartdata
-    order by id desc LIMIT 10
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from echartdata
+    delete from line_sections
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteFristData" >
-    delete from echartdata limit 1
+   <delete id="deleteFristData" >
+    delete from line_sections limit 1
   </delete>
-  <delete id="deleteByExample" parameterType="com.cqtiq.pojo.EchartdataExample" >
-    delete from echartdata
+  <delete id="deleteByExample" parameterType="com.cqtiq.pojo.LineSectionsExample" >
+    delete from line_sections
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.cqtiq.pojo.Echartdata" >
-    insert into echartdata (id, tach, h, gas, 
-      water)
-    values (#{id,jdbcType=INTEGER}, #{tach,jdbcType=DOUBLE}, #{h,jdbcType=DOUBLE}, #{gas,jdbcType=DOUBLE}, 
-      #{water,jdbcType=DOUBLE})
+  <insert id="insert" parameterType="com.cqtiq.pojo.LineSections" >
+    insert into line_sections (id, time, numdata
+      )
+    values (#{id,jdbcType=INTEGER}, #{time,jdbcType=VARCHAR}, #{numdata,jdbcType=INTEGER}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.cqtiq.pojo.Echartdata" >
-    insert into echartdata
+  <insert id="insertSelective" parameterType="com.cqtiq.pojo.LineSections" >
+    insert into line_sections
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
       </if>
-      <if test="tach != null" >
-        tach,
+      <if test="time != null" >
+        time,
       </if>
-      <if test="h != null" >
-        h,
-      </if>
-      <if test="gas != null" >
-        gas,
-      </if>
-      <if test="water != null" >
-        water,
+      <if test="numdata != null" >
+        numdata,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="tach != null" >
-        #{tach,jdbcType=DOUBLE},
+      <if test="time != null" >
+        #{time,jdbcType=VARCHAR},
       </if>
-      <if test="h != null" >
-        #{h,jdbcType=DOUBLE},
-      </if>
-      <if test="gas != null" >
-        #{gas,jdbcType=DOUBLE},
-      </if>
-      <if test="water != null" >
-        #{water,jdbcType=DOUBLE},
+      <if test="numdata != null" >
+        #{numdata,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.cqtiq.pojo.EchartdataExample" resultType="java.lang.Integer" >
-    select count(*) from echartdata
+  <select id="countByExample" parameterType="com.cqtiq.pojo.LineSectionsExample" resultType="java.lang.Integer" >
+    select count(*) from line_sections
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update echartdata
+    update line_sections
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.tach != null" >
-        tach = #{record.tach,jdbcType=DOUBLE},
+      <if test="record.time != null" >
+        time = #{record.time,jdbcType=VARCHAR},
       </if>
-      <if test="record.h != null" >
-        h = #{record.h,jdbcType=DOUBLE},
-      </if>
-      <if test="record.gas != null" >
-        gas = #{record.gas,jdbcType=DOUBLE},
-      </if>
-      <if test="record.water != null" >
-        water = #{record.water,jdbcType=DOUBLE},
+      <if test="record.numdata != null" >
+        numdata = #{record.numdata,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -185,40 +160,30 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update echartdata
+    update line_sections
     set id = #{record.id,jdbcType=INTEGER},
-      tach = #{record.tach,jdbcType=DOUBLE},
-      h = #{record.h,jdbcType=DOUBLE},
-      gas = #{record.gas,jdbcType=DOUBLE},
-      water = #{record.water,jdbcType=DOUBLE}
+      time = #{record.time,jdbcType=VARCHAR},
+      numdata = #{record.numdata,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cqtiq.pojo.Echartdata" >
-    update echartdata
+  <update id="updateByPrimaryKeySelective" parameterType="com.cqtiq.pojo.LineSections" >
+    update line_sections
     <set >
-      <if test="tach != null" >
-        tach = #{tach,jdbcType=DOUBLE},
+      <if test="time != null" >
+        time = #{time,jdbcType=VARCHAR},
       </if>
-      <if test="h != null" >
-        h = #{h,jdbcType=DOUBLE},
-      </if>
-      <if test="gas != null" >
-        gas = #{gas,jdbcType=DOUBLE},
-      </if>
-      <if test="water != null" >
-        water = #{water,jdbcType=DOUBLE},
+      <if test="numdata != null" >
+        numdata = #{numdata,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cqtiq.pojo.Echartdata" >
-    update echartdata
-    set tach = #{tach,jdbcType=DOUBLE},
-      h = #{h,jdbcType=DOUBLE},
-      gas = #{gas,jdbcType=DOUBLE},
-      water = #{water,jdbcType=DOUBLE}
+  <update id="updateByPrimaryKey" parameterType="com.cqtiq.pojo.LineSections" >
+    update line_sections
+    set time = #{time,jdbcType=VARCHAR},
+      numdata = #{numdata,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

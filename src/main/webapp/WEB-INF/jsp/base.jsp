@@ -328,6 +328,9 @@
                     <li>
                         <a href="echart"><i class="fa fa-fw fa-file"></i>测量表gauge</a>
                     </li>
+                    <li>
+                        <a href="line_sections"><i class="fa fa-fw fa-file"></i>电量数据图</a>
+                    </li>
                 </ul>
 
             </div>
