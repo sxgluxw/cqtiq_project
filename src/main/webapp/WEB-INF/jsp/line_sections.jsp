@@ -65,7 +65,10 @@
         	        },
         	        axisPointer: {
         	            snap: true
-        	        }
+        	        },
+        	        splitLine: {
+                        show: false
+                    }
         	    },
         	    visualMap: {
         	        show: false,
@@ -93,7 +96,7 @@
         	            type:'line',
         	            smooth: true,
         	            data:[{value:''},{value:''},{value:''},{value:''},{value:''},{value:''},{value:''},{value:''},{value:''},{value:''}],
-        	            markArea: {
+        	            /* markArea: {
         	                data: [ [{
         	                    name: '低用电量',
         	                    yAxis: '0'
@@ -105,6 +108,15 @@
         	                }, {
         	                    yAxis: '800'
         	                }] ]
+        	            } */
+        	            markLine: {
+        	                silent: true,
+        	                data: [{
+        	                	name: '低用电量',
+        	                    yAxis: 200
+        	                }, {
+        	                    yAxis: 600
+        	                }]
         	            }
         	        }
         	    ]
@@ -113,11 +125,11 @@
         		$.post("http://localhost:8080/cqtiq/line/listData",function(data){
         		//alert(data[0].timeperature);
         		//option.xAxis[0].data[0].value=(Math.random()*100);
-        		for (var i = 0; i < data.length; i++) {
+         		for (var i = 0; i < data.length; i++) {
         			option.series[0].data[i].value=data[i].numdata;
         			option.xAxis.data[i].value=data[i].time;
         			//alert(option.series[0].data[i].value[0]);
-				}
+				} 
         		
         		},"json");
         	    myChart.setOption(option,true);

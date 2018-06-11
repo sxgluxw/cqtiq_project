@@ -3,6 +3,7 @@ package com.cqtiq.controller;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -62,9 +63,27 @@ public class EchartController {
 		
 		
 		List<LineSections> list = echartService.queryLine();
-	
+		Collections.reverse(list);
 		
 		return list;
 	}
 	
+	
+
+	@RequestMapping("/echart/piezometerData")
+	@ResponseBody
+	public Echartdata getPiezometer() {
+		System.out.println("执行了");
+		
+		Echartdata saveData = new Echartdata();
+		saveData.setH(getData(100, 2));
+		saveData.setTach(getData(7, 2));
+		saveData.setGas(getData(2, 2));
+		saveData.setWater(getData(2, 2));
+		
+		echartService.saveEchartData(saveData);
+		
+		Echartdata echarData = echartService.getEcharData();
+		return echarData;
+	}
 }

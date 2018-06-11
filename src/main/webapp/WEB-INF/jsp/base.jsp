@@ -288,7 +288,7 @@
                     </li>
                     
                     <li>
-                        <a href="table"><i class="fa fa-table"></i> 响应表</a>
+                        <a href="table"><i class="fa fa-table"></i> 分页表</a>
                     </li>
                     <li>
                         <a href="form"><i class="fa fa-edit"></i> 表单</a>
@@ -330,6 +330,9 @@
                     </li>
                     <li>
                         <a href="line_sections"><i class="fa fa-fw fa-file"></i>电量数据图</a>
+                    </li>
+                    <li>
+                        <a href="piezometer"><i class="fa fa-fw fa-file"></i>压力计</a>
                     </li>
                 </ul>
 

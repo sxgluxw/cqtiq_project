@@ -47,8 +47,8 @@
         	            type: 'gauge',
         	            z: 3,
         	            min: 0,
-        	            max: 220,
-        	            splitNumber: 11,
+        	            max: 100,
+        	            splitNumber: 10,
         	            radius: '50%',
         	            axisLine: {            // 坐标轴线
         	                lineStyle: {       // 属性lineStyle控制线条样式
@@ -111,7 +111,7 @@
         	                color: '#eee',
         	                rich: {}
         	            },
-        	            data:[{value: 0, name: 'km/h'}]
+        	            data:[{value: 0, name: '压力Pa'}]
         	        },
         	        {
         	            name: '转速',
