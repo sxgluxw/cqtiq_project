@@ -72,13 +72,13 @@
 					
 					var div2 = document.getElementById("div2");
 					var div1 = document.getElementById("div1");
-					/* 	$.post("http://localhost:8080/cqtiq/switch/queryPerson",{"id":1},function(data){
+					/* 	$.post("/cqtiq/switch/queryPerson",{"id":1},function(data){
 							$("#a").html(data.name);
 							$("#b").html(data.sex);
 							$("#c").html(data.age);
 						}); */
 					//从后台查询开关状态，然后初始化开关
-						$.post("http://localhost:8080/cqtiq/switch/query",{},function(list){
+						$.post("/cqtiq/switch/query",{},function(list){
 							div1.className = (list.onoff == "open") ? "open1"
 									: "close1";
 							div2.className = (list.onoff == "open") ? "open2": "close2";
@@ -91,13 +91,13 @@
 								: "close1"; 
 						if (div1.className == "open1") {
 							/* alert('开') */
-							$.post("http://localhost:8080/cqtiq/switch/save",{"name":"open"},function(data){},"json")
+							$.post("/cqtiq/switch/save",{"name":"open"},function(data){},"json")
 						}
 						div2.className = (div2.className == "close2") ? "open2"
 								: "close2";
 						if (div1.className == "close1") {
 							/* alert("关") */
-							$.post("http://localhost:8080/cqtiq/switch/save",{"name":"close"},function(){},"json")
+							$.post("/cqtiq/switch/save",{"name":"close"},function(){},"json")
 						};
 						
 					}
@@ -119,7 +119,7 @@
 			  <h3>保存测试</h3>
 		 </div>
 		 <div class="theme-popbod dform">
-			   <form class="theme-signin" name="loginform" action="http://localhost:8080/cqtiq/switch/saveUser" method="post">
+			   <form class="theme-signin" name="loginform" action="/cqtiq/switch/saveUser" method="post">
 					<ol>
 						  <li><h4></h4></li>
 						 <li><strong>名字：</strong><input class="ipt" type="text" name="name" value="" size="20" /></li>
@@ -170,7 +170,7 @@
 				<script type="text/javascript">
 					function buttonSub(id){
 						//alert(id);
-						$.post("http://localhost:8080/cqtiq/switch/deleteUser",{"id":id},function(data){
+						$.post("/cqtiq/switch/deleteUser",{"id":id},function(data){
 							//alert(data)
 							if(data == "true"){
 								alert("删除成功！");
@@ -182,7 +182,7 @@
 						var name =$("#userForm [name=name"+id+"]").val();
 						var age =$("#userForm [name=age"+id+"]").val();
 						var sex =$("#userForm [name=sex"+id+"]").val();
-						$.post("http://localhost:8080/cqtiq/switch/updateUser",{"name":name,"age":age,"sex":sex,"id":id},function(data){
+						$.post("/cqtiq/switch/updateUser",{"name":name,"age":age,"sex":sex,"id":id},function(data){
 							//alert(data)
 							if(data == "true"){
 								alert("修改成功");

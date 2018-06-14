@@ -42,7 +42,7 @@ $(function(){
 layui.use('laypage', function(){
 //	alert("js执行了")
   var laypage = layui.laypage;
-  var url = "http://localhost:8080/cqtiq/pageuser/list";
+  var url = "/cqtiq/pageuser/list";
   var config = {page:1,pageSize:4};
   $.getJSON(url,config,function(res){
    laypage.render({

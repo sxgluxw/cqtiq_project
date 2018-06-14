@@ -13,7 +13,8 @@
   integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
   crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://img.hcharts.cn/highcharts/highcharts.js"></script>  
-<script type="text/javascript" src="https://img.hcharts.cn/highcharts/modules/exporting.js"></script>  
+<script type="text/javascript" src="https://img.hcharts.cn/highcharts/modules/exporting.js"></script> 
+ 
 </head>  
 <body>  
 <%-- <jsp:include page="base.jsp"></jsp:include> --%>
@@ -48,7 +49,7 @@
                                     chart = this;  
                                 //定时器  
                                 var iCount = setInterval(function t(){  
-                                    var url = "http://localhost:8080/cqtiq/datachart/data";  
+                                    var url = "/cqtiq/datachart/data";  
                                     $("#getTime").load(url,function(backData,textStatus,xmlHttpRequest){  
                                         var $temperature = parseFloat(backData.substr(0,4));//对传过来的数据进行类型转换  
                                         var $time = (new Date(Date.parse((backData.substr(5,21)).replace(/-/g,"/")))).getTime();  
@@ -74,7 +75,7 @@
                                     });
                                 	if(flag){
                                 	var iCount = setInterval(function t(){  
-                                    var url = "http://localhost:8080/cqtiq/datachart/data";  
+                                    var url = "/cqtiq/datachart/data";  
                                     $("#getTime").load(url,function(backData,textStatus,xmlHttpRequest){  
                                         var $temperature = parseFloat(backData.substr(0,4));//对传过来的数据进行类型转换  
                                         var $time = (new Date(Date.parse((backData.substr(5,21)).replace(/-/g,"/")))).getTime();  
