@@ -8,6 +8,8 @@
 <!-- 引入 echarts.js -->
 <script src="js/echarts.js"></script>
 <script src="js/jquery-easyui-1.4.1/jquery.min.js"></script>
+<script src="assets/js/jquery-1.10.2.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
 </head>
 <body>
 <jsp:include page="base.jsp"></jsp:include>
@@ -122,7 +124,7 @@
         	    ]
         	};
         	setInterval(function () {
-        		$.post("http://localhost:8080/cqtiq/line/listData",function(data){
+        		$.post("/cqtiq/line/listData",function(data){
         		//alert(data[0].timeperature);
         		//option.xAxis[0].data[0].value=(Math.random()*100);
          		for (var i = 0; i < data.length; i++) {

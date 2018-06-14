@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cqtiq.pojo.Echartdata;
+import com.cqtiq.pojo.Gas;
 import com.cqtiq.pojo.LineSections;
+import com.cqtiq.pojo.Rainfall;
 import com.cqtiq.pojo.Timeperature;
 import com.cqtiq.service.EchartService;
 
@@ -85,5 +87,37 @@ public class EchartController {
 		
 		Echartdata echarData = echartService.getEcharData();
 		return echarData;
+	}
+	
+	@RequestMapping("/gas/listData")
+	@ResponseBody
+	public List<Gas> getGasData() {
+		Gas gasData = new Gas();
+		Gas lastGas = echartService.getLastGas();
+		for (int i = 0; i < 20; i++) {
+			gasData.setGasdata((int)Math.round((Math.random() - 0.5) * 20 + lastGas.getGasdata()));
+			SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+			gasData.setTime(sdf.format(System.currentTimeMillis()));
+			
+			echartService.saveGasData(gasData);
+			
+		}
+		
+		List<Gas> list = echartService.selectTwoHundred();
+//		Collections.reverse(list);
+		return list ;
+	}
+	@RequestMapping("/rainfall/rainData")
+	@ResponseBody
+	public List<Rainfall> getRainData() {
+		Rainfall firstRain = echartService.selectFirstRain();
+		SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
+		firstRain.setId(null);
+		firstRain.setTime(sdf.format(System.currentTimeMillis()));
+		echartService.delectFirstRain(firstRain);
+		
+		List<Rainfall> list = echartService.getRainData();
+		Collections.reverse(list);
+		return list ;
 	}
 }

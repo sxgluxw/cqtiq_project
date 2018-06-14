@@ -8,6 +8,8 @@
  <!-- 引入 echarts.js -->
     <script src="js/echarts.js"></script>
     <script  src="js/common/jquery/jquery1.8.3.min.js"></script>
+    <script src="assets/js/jquery-1.10.2.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
 </head>
 <body>
 <jsp:include page="base.jsp"></jsp:include>
@@ -261,7 +263,7 @@
         	    option.series[3].data[0].value = (Math.random()*2).toFixed(2) - 0;
         	    myChart.setOption(option,true); */
         	    //alert("j");
-        	    $.post("http://localhost:8080/cqtiq/echart/queryData",function(data){
+        	    $.post("/cqtiq/echart/queryData",function(data){
         	    	//alert(data.h)
         	    	option.series[0].data[0].value =data.h - 0;
             	    option.series[1].data[0].value =data.tach - 0;

@@ -206,7 +206,7 @@
 			        }
 			        
 			        
-			        $.post("http://localhost:8080/cqtiq/login/login",{"username":username,"password":password} ,function(result){
+			        $.post("/cqtiq/login/login",{"username":username,"password":password} ,function(result){
 			        	
 			        	
 			    		if(result != "200"){

@@ -8,6 +8,8 @@
 <!-- 引入 echarts.js -->
 <script src="js/echarts.js"></script>
 <script src="js/jquery-easyui-1.4.1/jquery.min.js"></script>
+<script src="assets/js/jquery-1.10.2.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
 </head>
 <body>
 <jsp:include page="base.jsp"></jsp:include>
@@ -86,7 +88,7 @@
 			} ]
 		};
 		setInterval(function() {
-			$.post("http://localhost:8080/cqtiq/echart/piezometerData",
+			$.post("/cqtiq/echart/piezometerData",
 					function(eData) {
 						data = [ [ 10, 10.1, 100, 'A' ], [ 10.1, 14, 15, 'B' ],
 								[ 14, 14.1, '100', 'C' ], [ 26, 32, '', 'D' ],

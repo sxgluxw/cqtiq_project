@@ -15,6 +15,8 @@
 <link href="assets/css/custom-styles.css" rel="stylesheet" />
  <!-- Google Fonts-->
 <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+<script src="assets/js/jquery-1.10.2.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
 </head>
 <!-- <script  src="js/common/jquery/jquery1.8.3.min.js"></script>
 	<script>
