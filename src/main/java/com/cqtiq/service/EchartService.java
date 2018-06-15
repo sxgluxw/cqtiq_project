@@ -28,4 +28,6 @@ public interface EchartService {
 	void delectFirstRain(Rainfall firstRain);
 
 	List<Rainfall> getRainData();
+
+	Echartdata getBackEchartData(int i);
 }

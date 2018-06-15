@@ -38,6 +38,11 @@ public class EchartServiceImpl implements EchartService {
 	}
 
 
+	@Override
+	public Echartdata getBackEchartData(int i) {
+		Echartdata echartdata = echartdataMapper.selectByPrimaryKey(i);
+		return echartdata;
+	}
 
 	@Override
 	public void saveEchartData(Echartdata saveData) {
@@ -107,4 +112,7 @@ public class EchartServiceImpl implements EchartService {
 		List<Rainfall> list = rainfallMapper.selectDescRainData();
 		return list;
 	}
+
+
+
 }
