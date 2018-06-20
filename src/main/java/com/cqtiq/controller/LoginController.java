@@ -69,10 +69,10 @@ public class LoginController {
 			model.addAttribute("msg", "错误");
 			return "400";
 		}
-		jedisClient.del("1");
+		
 		jedisClient.set("redisToken"+user.getId(), user.getUsername());
 		System.out.println("内存缓存数据库"+jedisClient.get("redisToken"+user.getId()));
-		String token = user.toString();
+		String token = user.getUsername().toString();
 		if("".equals(CookieUtils.getCookieValue(request, token))&&StringUtils.isBlank(CookieUtils.getCookieValue(request, token)))
 		{
 			CookieUtils.setCookie(request, response, TOKEN_KEY, token);
