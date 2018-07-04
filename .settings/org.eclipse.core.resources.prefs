@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//src/main/resources/redis.properties=UTF-8
+encoding//src/main/webapp/WEB-INF/jsp/fire_alarm2.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/index.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/switch.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/table.jsp=UTF-8

@@ -29,7 +29,7 @@
 	href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	rel="stylesheet" /> -->
 </head>
-<body style="overflow: -Scroll; overflow-y: hidden">
+<body style="overflow: -Scroll; overflow-y: hidden" >
 	<jsp:include page="base.jsp"></jsp:include>
 	<!-- /. NAV SIDE  -->
 	<div id="page-wrapper" style="background-color: #fff">
@@ -83,7 +83,7 @@
 							<!-- 模态框主体 -->
 							<div class="modal-body">
 								<div class="form-group">
-									<label for="firstname" class="col-sm-5 control-label">用户名：</label>
+									<label for="firstname" class="col-sm-5 control-label">设置新用户名：</label>
 									<div class="col-sm-5">
 										<input name="username" id = "username"
 											style="width: 100%; background-color: #212121; border: 0px; outline: none; color: #acbed3"
@@ -96,7 +96,7 @@
 							<div class="modal-body">
 
 								<div class="form-group">
-									<label for="firstname" class="col-sm-5 control-label">旧密码：</label>
+									<label for="firstname" class="col-sm-5 control-label">请输入原密码：</label>
 									<div class="col-sm-5">
 										<input type="password" name= "old_password" id = "old_password"
 											style="width: 100%; background-color: #212121; border: 1px; color: #acbed3"
@@ -112,7 +112,7 @@
 							<div class="modal-body">
 
 								<div class="form-group">
-									<label for="firstname" class="col-sm-5 control-label">新密码：</label>
+									<label for="firstname" class="col-sm-5 control-label">设置新的密码：</label>
 									<div class="col-sm-5">
 										<input id="password" name="password" type="password"
 											style="width: 100%; background-color: #212121; border: 1px; color: #acbed3"
@@ -128,7 +128,7 @@
 							<div class="modal-body">
 
 								<div class="form-group">
-									<label for="firstname" class="col-sm-5 control-label">确认新密码：</label>
+									<label for="firstname" class="col-sm-5 control-label">重复新的密码：</label>
 									<div class="col-sm-5">
 										<input id="re_password" name="re_password" type="password"
 											style="width: 100%; background-color: #212121; border: 1px; color: #acbed3"
@@ -144,7 +144,7 @@
 							<div class="modal-body">
 
 								<div class="form-group">
-									<label for="firstname" class="col-sm-5 control-label">邮箱：</label>
+									<label for="firstname" class="col-sm-5 control-label">设置新的邮箱：</label>
 									<div class="col-sm-5">
 										<input name= "email" id = "email"
 											style="width: 100%; background-color: #212121; border: 0px; outline: none; color: #acbed3"
@@ -173,13 +173,20 @@
 			
 			<c:if test="${cookie['msg'].value eq '400'}">
 				<div id="w" class="easyui-window" title="警告" data-options="iconCls:'icon-error'" style="width:500px;height:200px;padding:10px; background-color: #212121;">
-        <strong style="color: #acbed3">The window content.</strong>
+        <strong style="color: #acbed3">旧密码输入错误，请尝试与管理员联系！</strong>
+    </div>
+			</c:if>
+			<c:if test="${cookie['loginMsg'].value eq '400'}">
+				<div id="w" class="easyui-window" title="警告" data-options="iconCls:'icon-error'" style="width:500px;height:200px;padding:10px; background-color: #212121;">
+        <strong style="color: #acbed3">用户名已被占用，请重新操作！</strong>
     </div>
 			</c:if>
 </body>
 
 <script type="text/javascript">
 	$(document).ready(function() {
+	
+		
 		$.post("/cqtiq/userprofile/queryUser", function(data) {
 		});
 		
@@ -205,6 +212,26 @@
 			}
 		});
 		
+		
+		
+		var flag = $("#username").blur(function(){
+			var username = $('#username').val();
+			var userid = $('#userid').val();
+			$.post("/cqtiq/userprofile/getFlag",{"username":username,"userid":userid}, function(data) {
+				if (data == "400") {
+
+					$("#input1").html("用户名已被占用，请重新输入");
+					setTimeout(function() {
+						$("#input1").html("");
+					}, 5000);
+					return false;
+				} else {
+					$("#input1").html("");
+					return true;
+				}
+				
+			});
+		});
 		
 		
 		var flag = $("#password").blur(function(){
@@ -233,18 +260,51 @@
 		alert(msg)
 		} */
 		
-		function GetRequest() {   
-			   var url = location.search; //获取url中"?"符后的字串   
-			   var theRequest = new Object();   
-			   if (url.indexOf("?") != -1) {   
-			      var str = url.substr(1);   
-			      strs = str.split("&");   
-			      for(var i = 0; i < strs.length; i ++) {   
-			         theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);   
-			      }   
-			   }   
-			   return theRequest;   
-			}
+	
+		
+		 var getCookie = document.cookie.replace(/[ ]/g,"");  //获取cookie，并且将获得的cookie格式化，去掉空格字符
+	        var arrCookie = getCookie.split(";") ; //将获得的cookie以"分号"为标识 将cookie保存到arrCookie的数组中
+	        var tips;  //声明变量tips
+	        for(var i=0;i<arrCookie.length;i++){   //使用for循环查找cookie中的tips变量
+	            var arr=arrCookie[i].split("=");   //将单条cookie用"等号"为标识，将单条cookie保存为arr数组
+	            if("loginMsg"==arr[0]){  //匹配变量名称，其中arr[0]是指的cookie名称，如果该条变量为tips则执行判断语句中的赋值操作
+	                tips=arr[1];   //将cookie的值赋给变量tips
+	                break;   //终止for循环遍历
+	            }
+	        };
+	        /* alert(tips);
+	         alert(document.cookie) */
+	        /* var date = new Date(); //获取当前时间
+	         date.setTime(date.getTime()-1); //将date设置为过去的时间
+	         document.cookie = "loginMsg" + "="+tips+"; expires=" +date.toGMTString();//设置cookie */
+	         var myDate=new Date();    
+	            myDate.setTime(-1000);//设置时间    
+	            document.cookie="loginMsg"+"=''; expires="+myDate.toGMTString()+";path=/";
+		if(tips == "200"){
+	         tips = "";
+	        alert("修改成功，请重新登录！")
+			$.ajax({
+                type: "POST",
+                url: "/cqtiq/switch/exit",
+                contentType:"application/json",
+                dataType:"json",
+                success: function(result){
+                   //请求正确之后的操作
+                   if(result){
+                 	 // alert("成功")
+                 	  window.location="login";
+                   }
+                },
+                error: function(result){
+                   //请求失败之后的操作
+                }
+         });
+	        $.cookie('loginMsg', null); 
+	        
+		}
+			     
+		
+		
 		
 	});
 	

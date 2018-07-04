@@ -12,4 +12,7 @@ public interface UserProfileService {
 
 	void updateUser(User user);
 
+
+	boolean getFalgUser(String username, int userid);
+
 }

@@ -2,6 +2,7 @@ package com.cqtiq.service.impl;
 
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,10 @@ public class LoginServiceImpl implements LoginService {
 		List<User> list = userMapper.selectByExample(example);
 //		User user = userMapper.selectByPrimaryKey(1);
 //		System.out.println("service:"+user+"password:"+password);
+//		System.out.println(list.isEmpty());
+		if(list.isEmpty()) {
+			return null;
+		}
 		User user = list.get(0);
 		if (user != null && user.getPassword().equals(password)) {
 			return user;

@@ -1,4 +1,6 @@
 package com.cqtiq.mqtt;
+import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
+import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttDeliveryToken;
@@ -22,6 +24,7 @@ import org.eclipse.paho.client.mqttv3.MqttDeliveryToken;
      public static final String TOPIC = "toclient/124";
      public static final String TOPIC125 = "toclient/125";
      private static final String clientid = "server";
+     public  final String KEY = "cqtiq12345678910";
  
      private MqttClient client;
      public MqttTopic topic;
@@ -49,17 +52,44 @@ import org.eclipse.paho.client.mqttv3.MqttDeliveryToken;
          //断线做重新连接。
 //         options.setAutomaticReconnect(true);
          try {
-             client.setCallback(new PushCallback());
+             //client.setCallback(new PushCallback());
+        	 client.setCallback(new MqttCallback() {
+				
+				@Override
+				public void messageArrived(String topic, MqttMessage message) throws Exception {
+					// System.out.println("发送消息主题:" + topic);
+
+	                    // 获取服务质量信息
+	                    //System.out.println("发送消息Qos:" + message.getQos());
+	                   // System.out.println("接收消息内容1 : " + new String(message.getPayload())); 
+	                   // System.out.println("发送消息"+message.getPayload());
+					
+				}
+				
+				@Override
+				public void deliveryComplete(IMqttDeliveryToken token) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void connectionLost(Throwable cause) {
+					// TODO Auto-generated method stub
+					
+				}
+			});
             
              
-             if (!client.isConnected()) {
+        	 client.connect(options);
+            /* if (!client.isConnected()) {
                  client.connect(options);
                  System.out.println("连接成功");
              }else {//这里的逻辑是如果连接成功就重新连接
                  client.disconnect();
                  client.connect(new MqttConnectOptions());
                  System.out.println("连接成功");
-             }
+             }*/
+        	
              
              topic = client.getTopic(TOPIC);
              topic125 = client.getTopic(TOPIC125);
@@ -72,8 +102,8 @@ import org.eclipse.paho.client.mqttv3.MqttDeliveryToken;
              MqttException {
          MqttDeliveryToken token = topic.publish(message);
          token.waitForCompletion();
-         System.out.println("message is published completely! "
-                 + token.isComplete());
+        // System.out.println("message is published completely! "
+             //    + token.isComplete());
      }
  
      public static void main(String[] args) throws MqttException {

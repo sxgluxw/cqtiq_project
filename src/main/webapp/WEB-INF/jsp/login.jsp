@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+		<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html >
      <head>
@@ -19,6 +20,15 @@
 		<style>
 			canvas{position: fixed; top: 0px; left: 0px; }
 		</style>
+		
+		<link rel="stylesheet" type="text/css"
+	href="easyui/themes/material-teal/easyui.css">
+<link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+<!-- <link rel="stylesheet" type="text/css" href="easyui/demo/demo.css"> -->
+<script type="text/javascript" src="easyui/jquery.min.js"></script>
+<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+<script src="assets/js/jquery-1.10.2.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
     </head>
 
     <body id="body">
@@ -211,15 +221,15 @@
 			        	
 			    		if(result != "200"){
 			    			$("#input2").html("用户名或密码不正确！")
-			    			$("#input1").html("用户名或密码不正确！");
+			    			//$("#input1").html("用户名或密码不正确！");
 			    			setTimeout(function(){
 			    			$("#input2").html("")
-			    			$("#input1").html("");
+			    			//$("#input1").html("");
 			    			},5000);
 			    			$('.password').val('');
 			    			return;
 			    		}else{
-			    			alert('登录成功！');
+			    			//alert('登录成功！');
 			    			setTimeout(function(){
 			    				//登录返回
 				    			window.location.href= "index";
@@ -237,6 +247,7 @@
 			    });
 			});
         </script>
+        
     </body>
 
 </html>

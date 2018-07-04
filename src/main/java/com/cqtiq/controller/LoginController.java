@@ -55,6 +55,12 @@ public class LoginController {
 	@RequestMapping("/login/login")
 	@ResponseBody
 	public String query1(@RequestParam String username, @RequestParam String password, Model model,HttpServletRequest request,HttpServletResponse response) {
+		CookieUtils.deleteCookie(request, response, "loginMsg");
+		User user = loginService.queryUser(username, password);
+		if (user == null ) {
+			model.addAttribute("msg", "错误");
+			return "400";
+		}
 		System.out.println(username+"====="+password);
 		Subject subject = SecurityUtils.getSubject();
 		// 用户名和密码信息
@@ -62,14 +68,9 @@ public class LoginController {
 		System.out.println("user接受到了");
 		subject.login(authenticationToken);
 		
-		User user = loginService.queryUser(username, password);
+		
 		
 		System.out.println("User输出："+user);
-		if (user == null) {
-			model.addAttribute("msg", "错误");
-			return "400";
-		}
-		
 		jedisClient.set("redisToken"+user.getId(), user.getUsername());
 		System.out.println("内存缓存数据库"+jedisClient.get("redisToken"+user.getId()));
 		String token = user.getUsername().toString();

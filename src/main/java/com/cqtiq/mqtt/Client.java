@@ -11,6 +11,8 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttSecurityException;  
 import org.eclipse.paho.client.mqttv3.MqttTopic;  
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
+
+import com.cqtiq.controller.FireAlarmController;
   
 public class Client {  
   
@@ -66,7 +68,9 @@ public class Client {
     }  
    
     public static void main(String[] args) throws MqttException {     
-        Client client = new Client();  
-        client.start();  
+//        Client client = new Client();  
+//        client.start();  
+    	FireAlarmController f = new FireAlarmController();
+    	f.recieveMessage();
     }  
 }

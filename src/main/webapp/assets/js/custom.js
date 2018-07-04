@@ -68,13 +68,13 @@
             Morris.Donut({
                 element: 'morris-donut-chart',
                 data: [{
-                    label: "Download Sales",
+                    label: "直接访问量",
                     value: 10
                 }, {
-                    label: "In-Store Sales",
+                    label: "引擎搜索量",
                     value: 32
                 }, {
-                    label: "Mail-Order Sales",
+                    label: "广告查看量",
                     value: 20
                 }],
                 resize: true
