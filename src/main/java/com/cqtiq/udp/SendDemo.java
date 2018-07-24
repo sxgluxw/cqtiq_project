@@ -18,7 +18,7 @@ import java.io.IOException;
          // int port = 10086;
          
          DatagramPacket dp = new DatagramPacket(bys, bys.length,
-                 InetAddress.getByName("192.168.31.132"), 10086);
+                 InetAddress.getByName("192.168.31.174"), 61002);
  
          // 发送数据
          ds.send(dp);

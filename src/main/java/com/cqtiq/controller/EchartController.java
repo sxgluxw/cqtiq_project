@@ -31,7 +31,7 @@ public class EchartController {
 		
 		
 		
-		System.out.println("执行了");
+//		System.out.println("执行了");
 		
 		Echartdata saveData = new Echartdata();
 		saveData.setH(getData(100, 2));
@@ -75,7 +75,7 @@ public class EchartController {
 	@RequestMapping("/echart/piezometerData")
 	@ResponseBody
 	public Echartdata getPiezometer() {
-		System.out.println("执行了");
+//		System.out.println("执行了");
 		
 		Echartdata saveData = new Echartdata();
 		saveData.setH(getData(100, 2));

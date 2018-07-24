@@ -259,9 +259,9 @@
 
 		<!-- mqtt的jar包 -->
 		<dependency>
-			<groupId>org.eclipse.paho</groupId>
-			<artifactId>org.eclipse.paho.client.mqttv3</artifactId>
-			<version>1.1.0</version>
+		    <groupId>org.eclipse.paho</groupId>
+		    <artifactId>org.eclipse.paho.client.mqttv3</artifactId>
+		    <version>1.1.1</version>
 		</dependency>
 
 		<!-- modbus的jar包 -->

@@ -21,7 +21,7 @@
 	                linear-gradient(to bottom, #4b8289, #4b8289) left bottom no-repeat,
 	                linear-gradient(to left, #4b8289, #4b8289) right bottom no-repeat,
 	                linear-gradient(to left, #4b8289, #4b8289) right bottom no-repeat;
-	    background-size: 1px 20px, 20px 1px, 1px 20px, 20px 1px;
+	    background-size: 2px 15px, 15px 2px, 2px 15px, 15px 2px;
 	}
 	
 	a:link {color: #a7b9cb; text-decoration:none;};
@@ -52,7 +52,7 @@
 		</div>
 		
 	</div>
-	<div  style="width: 900px;height: 1200px ;background-color: #071822;float: right; float: left: ;" >
+	<div  style="width: 900px;height: 1200px ;background-color: #071822;float: right; float: left ;" >
 		<div style="width: 900px;height: 10px;">
 			<div id= "main5" style="width: 900px;height: 10px;" ></div>
 		</div>
@@ -167,10 +167,16 @@
         	    ]
         	};
         	setInterval(function () {
-        		$.post("/cqtiq/gas/listData1",function(listData){
+        		//$.post("/cqtiq/gas/listData1",function(listData){
         		//alert(listData[0].time);
         		//option.xAxis[0].data[0].value=(Math.random()*100);
         			//option.series[0].data[0]=(Math.round((Math.random() - 0.5) * 20 + Math.random() * 300));
+        			$.ajax({
+                    type : "post",
+                    url: "/cqtiq/gas/listData1",
+                    // dataType : "jsonp",//数据类型为jsonp   
+                     dataType : "json",//数据类型为jsonp   
+              success : function(listData){
          		for (var i = 0; i <300; i++) {
         			//alert("series:"+option.series[0].data[2]);
          		    option1.series[0].data[i]=listData[i].gasdata;
@@ -179,7 +185,8 @@
          		    //}
 				} 
         		
-        	},"json");
+        	}
+        			});
         	    myChart1.setOption(option1,true);
         	            
         		
@@ -292,8 +299,10 @@
         	    ]
         	};
         	setInterval(function () {
-        		$.post("/cqtiq/line/listData1",function(data){
-        		//alert(data[0].timeperature);
+        			//alert("l")
+        		/* $.post("/cqtiq/line/listData1",function(data){
+        			alert("k")
+        		alert(data);
         		//option.xAxis[0].data[0].value=(Math.random()*100);
          		for (var i = 0; i < data.length; i++) {
         			option2.series[0].data[i].value=data[i].numdata;
@@ -301,7 +310,25 @@
         			//alert(option.series[0].data[i].value[0]);
 				} 
         		
-        		},"json");
+        		},"application/json"); */
+        		$.ajax({
+                    type : "post",
+                    url: "/cqtiq/line/listData1",
+                    // dataType : "jsonp",//数据类型为jsonp   
+                     dataType : "json",//数据类型为jsonp   
+              //jsonpCallback:"callback",
+              success : function(data){
+            	  
+            		//alert(data);
+            		//option.xAxis[0].data[0].value=(Math.random()*100);
+             		for (var i = 0; i < data.length; i++) {
+            			option2.series[0].data[i].value=data[i].numdata;
+            			option2.xAxis.data[i].value=data[i].time;
+            			//alert(option.series[0].data[i].value[0]);
+    				} 
+            		
+            		}
+        		});
         	    myChart2.setOption(option2,true);
         	            
         		
@@ -464,6 +491,7 @@
         					} */
         					
         					 $.post("/cqtiq/rainfall/rainData1",function(rainData){
+        						 //alert(rainData)
         						 for (var i = 0; i <500; i++) {
         						 option3.series[0].data[i] = rainData[i].freshet;
         						 option3.series[1].data[i] = rainData[i].rainfall;
@@ -545,8 +573,13 @@
 			} ]
 		};
 		setInterval(function() {
-			$.post("/cqtiq/echart/piezometerData1",
-					function(eData) {
+			//$.post("/cqtiq/echart/piezometerData1",function(eData) {
+				$.ajax({
+                    type : "post",
+                    url: "/cqtiq/echart/piezometerData1",
+                    // dataType : "jsonp",//数据类型为jsonp   
+                     dataType : "json",//数据类型为jsonp   
+              success : function(eData){
 						data = [ [ 0, 20, '', 'D' ],[ 20, 20.1, 100, 'A' ], [ 20.1, 27, 15, 'B' ],
 								[ 27, 27.1, '100', 'C' ],[ 27.1, 40, '', 'D' ],];
 						
@@ -574,7 +607,8 @@
 							} ]
 						}); */
 						option.series[0].data = data;
-					}, "json");
+					}
+				});
 			myChart4.setOption(option, true);
 		}, 2000);
     </script>
@@ -821,15 +855,22 @@
         	    option.series[3].data[0].value = (Math.random()*2).toFixed(2) - 0;
         	    myChart.setOption(option,true); */
         	    //alert("j");
-        	    $.post("/cqtiq/echart/queryData1",function(data){
+        	    //$.post("/cqtiq/echart/queryData1",function(data){
         	    	//alert(data.h)
+        	    	$.ajax({
+                    type : "post",
+                    url: "/cqtiq/echart/queryData1",
+                    // dataType : "jsonp",//数据类型为jsonp   
+                     dataType : "json",//数据类型为jsonp   
+              success : function(data){
         	    	option5.series[0].data[0].value =data.h - 0;
             	    option5.series[1].data[0].value =data.tach - 0;
             	    option5.series[2].data[0].value = data.gas - 0;
             	    option5.series[3].data[0].value = data.water - 0;
             	    myChart5.setOption(option5,true); 
             	    //alert("")
-        	    },"json");  
+        	    }
+        	    	});  
         	   
         	    
         	

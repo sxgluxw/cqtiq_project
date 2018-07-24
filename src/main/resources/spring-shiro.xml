@@ -31,17 +31,27 @@
 	    <property name="filterChainDefinitions">  
 	        <value>  
 	             /login*=anon
-	            
 	             /pageuser/list* = anon
 	             /register*=anon
 	             /open/valicode.do*=anon
 	             /datachart/data*=anon
 	             /datachart*=anon
+	             /utils/**=anon
+	             /ledlamp*/** = anon
+	             /ledlamp** = anon
 	             /register/userRegister*=anon
-				
 				/fasdfa*=authc
 				/student=roles[custom]
 				/login/login* = anon
+				/fire/fireData* = anon
+				/gas/listData1* = anon
+				/line/listData1* = anon
+				/industry/query* = anon
+				/industry/queryTimeData* = anon
+				/rainfall/rainData1*= anon
+				/echart/piezometerData1* = anon
+				/echart/queryData1* = anon
+				/totalpage* = anon
 				/teacher=perms["user:create"]
 				/css/** = anon
 				/js/** = anon

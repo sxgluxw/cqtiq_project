@@ -43,7 +43,7 @@ public class DataChartController {
 		
 		
 		temperature = dataChartService.selectByAll();
-		System.out.println(temperature);
+		//System.out.println(temperature);
 		//存入数据库之后，删除一条记录
 		dataChartService.deleteData();
 		//转换时间格式  

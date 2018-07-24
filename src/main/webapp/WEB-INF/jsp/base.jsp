@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>cssmoban</title>
+    <title>畅启科技</title>
     <!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FontAwesome Styles-->
@@ -159,6 +159,9 @@
                     </li>
                     <li>
                         <a class="active-menu" href="fire_alarm"><i class="fa fa-bar-chart-o"></i>火警图</a>
+                    </li>
+                    <li>
+                        <a class="active-menu" href="industry"><i class="fa fa-bar-chart-o"></i>LED灯</a>
                     </li>
                 </ul>
 

@@ -68,9 +68,9 @@ public class Client {
     }  
    
     public static void main(String[] args) throws MqttException {     
-//        Client client = new Client();  
-//        client.start();  
-    	FireAlarmController f = new FireAlarmController();
-    	f.recieveMessage();
+        Client client = new Client();  
+        client.start();  
+    	//FireAlarmController f = new FireAlarmController();
+    	//f.recieveMessage();
     }  
 }
