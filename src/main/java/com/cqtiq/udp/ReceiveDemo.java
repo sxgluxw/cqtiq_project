@@ -14,7 +14,7 @@ import java.io.IOException;
  public class ReceiveDemo {
      public static void main(String[] args) throws IOException {
          // 创建接收端数socket对象,指定端口。
-         DatagramSocket ds = new DatagramSocket(10086);
+         DatagramSocket ds = new DatagramSocket(61002);
          // 接收数据
          byte[] buf = new byte[1024];
          // int length = buf.length;

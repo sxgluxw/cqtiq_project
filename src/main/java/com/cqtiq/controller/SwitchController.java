@@ -47,7 +47,7 @@ public class SwitchController {
 	@ResponseBody
 	public Test querySwitch(Model model) {
 		Test test = switchService.querySwitch(1);
-		System.out.println("======"+test.getOnoff());
+//		System.out.println("======"+test.getOnoff());
 		model.addAttribute("list", test);
 		return test;
 	}

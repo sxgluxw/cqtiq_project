@@ -1,5 +1,6 @@
 package com.cqtiq.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 		example.createCriteria().andUsernameEqualTo(username);
 		List<User> list = userMapper.selectByExample(example );
 		User user  = list.get(0);
+	
 		return user;
 	}
 
@@ -36,6 +38,29 @@ public class UserProfileServiceImpl implements UserProfileService {
 	@Override
 	public void updateUser(User user) {
 		userMapper.updateByPrimaryKey(user);
+	}
+
+	@Override
+	public boolean getFalgUser(String username,int userid) {
+		//查询username有没有被占用
+		List<String> value = new ArrayList<>();
+		value.add(username);
+		UserExample example = new UserExample();
+		example.createCriteria().andUsernameIn(value);
+		List<User> list = userMapper.selectByExample(example);
+//		System.out.println(list);
+		boolean flag = true;
+		if(list.isEmpty()) {
+			return true;
+		}
+		for (User user : list) {
+			if(userid == user.getId() && list.size() == 1) {
+				flag = true;
+			}else if(userid != user.getId()) {
+				return false;
+			}
+		}
+		return flag;
 	}
 
 }

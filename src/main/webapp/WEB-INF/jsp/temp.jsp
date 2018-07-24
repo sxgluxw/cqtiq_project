@@ -12,54 +12,168 @@
 <meta charset="UTF-8">
 <title>Basic Window - jQuery EasyUI Demo</title>
 <title>Basic TextBox - jQuery EasyUI Demo</title>
+
+
+
+
+
 <link rel="stylesheet" type="text/css"
 	href="easyui/themes/material-teal/easyui.css">
 <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
-<link rel="stylesheet" type="text/css" href="easyui/demo/demo.css">
+<!-- <link rel="stylesheet" type="text/css" href="easyui/demo/demo.css"> -->
 <script type="text/javascript" src="easyui/jquery.min.js"></script>
 <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
-<style type="text/css">
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="js/echarts.js"></script>
 
 
 
-
-
-</style>
 </head>
 <body>
 
-	<div style="margin:20px 0;"></div>
-    <div style="width:100%;max-width:400px;padding:30px 60px;">
-        <div style="margin-bottom:20px">
-            <input class="easyui-textbox" label="用户名:" labelPosition="top" style="width:100%; "  value="${ user.username }" readonly="readonly">
-        </div>
-        
-        <div style="margin-bottom:20px">
-            <input class="easyui-passwordbox" label="密码:" labelPosition="top" style="width:100%;" value="${ user.password }" readOnly="true"  >
-        </div>
-        
-        <div style="margin-bottom:20px">
-            <input class="easyui-textbox" label="邮箱:" labelPosition="top" style="width:100%;" readonly="readonly" value="${ user.email }">
-        </div>
-        <div>
-            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#wode').window('open')" iconCls="icon-edit" style="width:100%;height:32px">编辑</a>
-        </div>
-	<div id="wode" class="easyui-window" title="Fluid Window"
-		style="width: 50%; height: 800px; padding: 10px; background-color: #020e35" inline: true
-		data-options="<!-- modal:true,closed:true, -->
-            iconCls:'icon-save',
-            onResize:function(){
-                $(this).window('hcenter');
-            }">
-		<div style="width: 200px ;height: 800px;background-color: blue;float: left;"></div>
-		<div style="width:495;height: 800px;background-color: red;float: left;">
-			
-		</div>
-		<div style="width: 200px ;height: 800px;background-color: green;"></div>
-	</div>
-    </div>
-    </body>
-    <script type="text/javascript">
-    
+	<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+	<div id="main" style="width: 900px; height: 700px;"></div>
+	<script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var option = {
+        	    title: {
+        	        text: '烟雾传感器',
+        	    },
+        	   tooltip: {
+        	        trigger: 'axis',
+        	        axisPointer: {
+        	            type: 'cross'
+        	        }
+        	    }, 
+        	  /*   toolbox: {
+        	        show: true,
+        	        feature: {
+        	            saveAsImage: {}
+        	        }
+        	    }, */
+        	    xAxis:  {
+        	        type: 'category',
+        	        boundaryGap: false,
+        	        /* axisLabel: {
+        	            formatter: function(data){
+        	                var date = new Date();
+        	                return date.getSeconds();
+        	            }
+        	        }, */
+        	        data: [{value:''},{value:''},{value:''},{value:''},{value:''},{value:''},{value:''},{value:''},{value:''},{value:''}]
+        	    },
+        	    yAxis: {
+        	        type: 'value',
+        	        axisLabel: {
+        	            formatter: '{value} %FT'
+        	        },
+        	        axisPointer: {
+        	            snap: true
+        	        },
+        	        splitLine: {
+                        show: false
+                    }
+        	    },
+        	    visualMap: {
+        	        show: false,
+        	        dimension:1,
+        	        pieces: [{
+        	            lte: 0,
+        	            color: 'green'
+        	        }, {
+        	            gt: 0,
+        	            lte: 0.3,
+        	            color: 'green'
+        	        }, {
+        	            gt: 0.3,
+        	            lte: 0.65,
+        	            color: 'green'
+        	        }, {
+        	            gt: 0.65,
+        	            lte: 15.5,
+        	            color: 'red'
+        	        }]
+        	    },
+        	    series: [
+        	        {
+        	            name:'室内颗粒浓度',
+        	            type:'line',
+        	            smooth: true,
+        	            data:[{value:''},{value:''},{value:''},{value:''},{value:''},{value:''},{value:''},{value:''},{value:''},{value:''}],
+        	            /* markArea: {
+        	                data: [ [{
+        	                    name: '低用电量',
+        	                    yAxis: '0'
+        	                }, {    
+        	                    yAxis: '200'
+        	                }], [{
+        	                    name: '高用电量',
+        	                    yAxis: '600'
+        	                }, {
+        	                    yAxis: '800'
+        	                }] ]
+        	            } */
+        	            markLine: {
+        	                silent: true,
+        	                data: [{
+        	                    yAxis: 200
+        	                }, {
+        	                    yAxis: 600
+        	                }]
+        	            }
+        	        }
+        	    ]
+        	};
+        	var t = setInterval(function () {
+        		$.post("/cqtiq/fire/fireData",function(data){
+        			//alert("k")
+        		//alert(data[0].timeperature);
+        		//option.xAxis[0].data[0].value=(Math.random()*100);
+         		for (var i = 0; i < data.length; i++) {
+        			option.series[0].data[i].value=data[i].smokescope;
+        			option.xAxis.data[i].value=data[i].time;
+        			//alert(option.series[0].data[i].value[0]);
+				} 
+        		
+        		},"json");
+        	    myChart.setOption(option,true);
+        	            alert(${cookie['alarm'].value}== '400')
+        	 if(${cookie['alarm'].value} == '400'){
+        		 setInterval(t,2000);
+        		clearInterval(t);
+        		var data = "火警报警，请工作人员疏散人群，查看室内情况";
+        		alert("k")
+        			
+        			 $.messager.alert('警告',data,"warning",function(d){
+        				 alert(d)
+        			     if (true){
+        					 //$.messager.alert('Warning',data,"warning");
+        			    	 $.messager.prompt('Prompt', '请再次确认，并输入原因', function(r){
+        			    		 alert(r)
+        			 			if (r){
+									$.post("/cqtiq/confirm/fireAlarm",{"msg":r},function(data){
+           			 					
+           			 				})
+        			 			}else{
+        			 				window.location.href = "temp"
+        			 			}
+        			 		});
+        			     }
+        			 });
+        	} 
+        		
+        		 
+        	},2000);
+        	
+        	
+        	
+        	
     </script>
+
+
+
+</body>
 </html>

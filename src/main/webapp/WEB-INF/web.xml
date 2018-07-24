@@ -8,7 +8,12 @@
     <welcome-file-list>  
         <welcome-file>/index.jsp</welcome-file>  
     </welcome-file-list>  
-    
+     
+     <!-- 启动MQTT类 -->
+     <!--  <listener>
+      	<listener-class>com.cqtiq.utils.MqttUtils</listener-class>
+      </listener> -->
+     
     <!-- shiro 过滤器 start -->
 	<filter>
 		<filter-name>shiroFilter</filter-name>
@@ -67,4 +72,6 @@
         <url-pattern>/</url-pattern>  
     </servlet-mapping>  
       
+      
+     
 </web-app>  

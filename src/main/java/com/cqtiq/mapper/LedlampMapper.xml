@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cqtiq.mapper.LedlampMapper" >
+  <resultMap id="BaseResultMap" type="com.cqtiq.pojo.Ledlamp" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="devnum" property="devnum" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="port" property="port" jdbcType="INTEGER" />
+    <result column="data" property="data" jdbcType="VARCHAR" />
+    <result column="gatewaycount" property="gatewaycount" jdbcType="INTEGER" />
+    <result column="gatewayid" property="gatewayid" jdbcType="VARCHAR" />
+    <result column="losecount" property="losecount" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, devnum, time, port, data, gatewaycount, gatewayid, losecount
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cqtiq.pojo.LedlampExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ledlamp
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ledlamp
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ledlamp
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cqtiq.pojo.LedlampExample" >
+    delete from ledlamp
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cqtiq.pojo.Ledlamp" >
+    insert into ledlamp (id, devnum, time, 
+      port, data, gatewaycount, 
+      gatewayid, losecount)
+    values (#{id,jdbcType=INTEGER}, #{devnum,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, 
+      #{port,jdbcType=INTEGER}, #{data,jdbcType=VARCHAR}, #{gatewaycount,jdbcType=INTEGER}, 
+      #{gatewayid,jdbcType=VARCHAR}, #{losecount,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cqtiq.pojo.Ledlamp" >
+    insert into ledlamp
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="devnum != null" >
+        devnum,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="port != null" >
+        port,
+      </if>
+      <if test="data != null" >
+        data,
+      </if>
+      <if test="gatewaycount != null" >
+        gatewaycount,
+      </if>
+      <if test="gatewayid != null" >
+        gatewayid,
+      </if>
+      <if test="losecount != null" >
+        losecount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="devnum != null" >
+        #{devnum,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="port != null" >
+        #{port,jdbcType=INTEGER},
+      </if>
+      <if test="data != null" >
+        #{data,jdbcType=VARCHAR},
+      </if>
+      <if test="gatewaycount != null" >
+        #{gatewaycount,jdbcType=INTEGER},
+      </if>
+      <if test="gatewayid != null" >
+        #{gatewayid,jdbcType=VARCHAR},
+      </if>
+      <if test="losecount != null" >
+        #{losecount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cqtiq.pojo.LedlampExample" resultType="java.lang.Integer" >
+    select count(*) from ledlamp
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+   <select id="selectLastLedlampData" resultMap="BaseResultMap" >
+    select  <include refid="Base_Column_List" />
+    from ledlamp
+    order by id desc LIMIT 10
+  </select>
+   <select id="selectTimeLedlampData" resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List" /> 
+    from ledlamp
+   <![CDATA[ where  DATE_SUB(CURDATE(), INTERVAL 7 DAY) <=  time]]>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ledlamp
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.devnum != null" >
+        devnum = #{record.devnum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.time != null" >
+        time = #{record.time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.port != null" >
+        port = #{record.port,jdbcType=INTEGER},
+      </if>
+      <if test="record.data != null" >
+        data = #{record.data,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gatewaycount != null" >
+        gatewaycount = #{record.gatewaycount,jdbcType=INTEGER},
+      </if>
+      <if test="record.gatewayid != null" >
+        gatewayid = #{record.gatewayid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.losecount != null" >
+        losecount = #{record.losecount,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ledlamp
+    set id = #{record.id,jdbcType=INTEGER},
+      devnum = #{record.devnum,jdbcType=VARCHAR},
+      time = #{record.time,jdbcType=TIMESTAMP},
+      port = #{record.port,jdbcType=INTEGER},
+      data = #{record.data,jdbcType=VARCHAR},
+      gatewaycount = #{record.gatewaycount,jdbcType=INTEGER},
+      gatewayid = #{record.gatewayid,jdbcType=VARCHAR},
+      losecount = #{record.losecount,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cqtiq.pojo.Ledlamp" >
+    update ledlamp
+    <set >
+      <if test="devnum != null" >
+        devnum = #{devnum,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="port != null" >
+        port = #{port,jdbcType=INTEGER},
+      </if>
+      <if test="data != null" >
+        data = #{data,jdbcType=VARCHAR},
+      </if>
+      <if test="gatewaycount != null" >
+        gatewaycount = #{gatewaycount,jdbcType=INTEGER},
+      </if>
+      <if test="gatewayid != null" >
+        gatewayid = #{gatewayid,jdbcType=VARCHAR},
+      </if>
+      <if test="losecount != null" >
+        losecount = #{losecount,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cqtiq.pojo.Ledlamp" >
+    update ledlamp
+    set devnum = #{devnum,jdbcType=VARCHAR},
+      time = #{time,jdbcType=TIMESTAMP},
+      port = #{port,jdbcType=INTEGER},
+      data = #{data,jdbcType=VARCHAR},
+      gatewaycount = #{gatewaycount,jdbcType=INTEGER},
+      gatewayid = #{gatewayid,jdbcType=VARCHAR},
+      losecount = #{losecount,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

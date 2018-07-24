@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>畅启科技</title>
 <!-- 引入 echarts.js -->
 <script src="js/echarts.js"></script>
 <script src="js/jquery-easyui-1.4.1/jquery.min.js"></script>
