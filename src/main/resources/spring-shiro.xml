@@ -39,6 +39,8 @@
 	             /utils/**=anon
 	             /ledlamp*/** = anon
 	             /ledlamp** = anon
+	             /websocket** = anon
+	             /websocket/** = anon
 	             /register/userRegister*=anon
 				/fasdfa*=authc
 				/student=roles[custom]
